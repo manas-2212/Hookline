@@ -1,0 +1,29 @@
+{
+  "name": "hookline",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter ./apps/api --filter ./apps/worker --filter ./apps/dashboard --filter ./apps/chaos-receiver dev",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run --project unit",
+    "test:int": "vitest run --project integration",
+    "db:migrate": "pnpm --filter @hookline/db migrate",
+    "db:seed": "pnpm --filter @hookline/db seed",
+    "torture": "pnpm --filter @hookline/scripts torture --",
+    "build": "pnpm --filter @hookline/dashboard build",
+    "demo": "pnpm --filter @hookline/scripts demo --"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.8",
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
+  }
+}
