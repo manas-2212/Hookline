@@ -15,9 +15,9 @@
     "test:int": "vitest run --project integration",
     "db:migrate": "pnpm --filter @hookline/db migrate",
     "db:seed": "pnpm --filter @hookline/db seed",
-    "torture": "pnpm --filter @hookline/scripts torture --",
+    "torture": "pnpm --filter @hookline/scripts torture",
     "build": "pnpm --filter @hookline/dashboard build",
-    "demo": "pnpm --filter @hookline/scripts demo --"
+    "demo": "pnpm --filter @hookline/scripts demo"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.8",
