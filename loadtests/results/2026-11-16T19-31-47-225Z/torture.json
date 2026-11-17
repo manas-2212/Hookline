@@ -1,0 +1,74 @@
+{
+  "at": "2026-11-16T19:31:47.225Z",
+  "machine": {
+    "cpus": 2,
+    "memory_gb": 8,
+    "node": "v22.23.4"
+  },
+  "settings": {
+    "messages": 2000,
+    "workers": 3,
+    "kill_every_s": 4,
+    "retry_delay_scale": 0.001,
+    "lease_s": 5
+  },
+  "kills": 34,
+  "publish_seconds": 14.043,
+  "total_seconds": 141.046,
+  "receiver_requests": 9816,
+  "bad_signatures": 0,
+  "totals": {
+    "expected": 8000,
+    "delivered": 8000,
+    "lost": 0,
+    "unfinished": 0,
+    "duplicates": 148,
+    "failed": 0
+  },
+  "endpoints": {
+    "slow": {
+      "expected": 2000,
+      "delivered": 2000,
+      "failed": 0,
+      "lost": 0,
+      "unfinished": 0,
+      "duplicates": 103,
+      "attempts": 2000,
+      "ttfa_p50_ms": 65189,
+      "ttfa_p95_ms": 120953
+    },
+    "healthy": {
+      "expected": 2000,
+      "delivered": 2000,
+      "failed": 0,
+      "lost": 0,
+      "unfinished": 0,
+      "duplicates": 15,
+      "attempts": 2000,
+      "ttfa_p50_ms": 6341,
+      "ttfa_p95_ms": 7289
+    },
+    "hostile": {
+      "expected": 2000,
+      "delivered": 2000,
+      "failed": 0,
+      "lost": 0,
+      "unfinished": 0,
+      "duplicates": 14,
+      "attempts": 2788,
+      "ttfa_p50_ms": 15867,
+      "ttfa_p95_ms": 26829
+    },
+    "flaky": {
+      "expected": 2000,
+      "delivered": 2000,
+      "failed": 0,
+      "lost": 0,
+      "unfinished": 0,
+      "duplicates": 16,
+      "attempts": 2851,
+      "ttfa_p50_ms": 13125,
+      "ttfa_p95_ms": 17901
+    }
+  }
+}

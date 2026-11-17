@@ -1,0 +1,21 @@
+{
+  "name": "@hookline/scripts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "torture": "tsx torture.ts",
+    "demo": "tsx demo.ts"
+  },
+  "dependencies": {
+    "@hookline/db": "workspace:*",
+    "@hookline/sdk": "workspace:*",
+    "kysely": "^0.29.9",
+    "pg": "^8.23.1",
+    "tsx": "^4.23.15"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1"
+  }
+}
