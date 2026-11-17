@@ -24,20 +24,20 @@ scaled ×0.001 so the full 10-attempt schedule fits in a run; lease 5 s. Four en
 healthy, flaky (30% 500s, 10–150 ms), slow (300–800 ms), hostile (5% timeouts, 5% connection
 resets, 20% 500s). Raw reports: `loadtests/results/<timestamp>/torture.{md,json}`.
 
-| Date (UTC) | Scenario | Deliveries | Real SIGKILLs | Lost | Unfinished | Duplicates | Bad signatures | Wall time |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-11-16 19:31 | 2000 msgs × 4 endpoints, kill a worker every 4 s | 8,000 | 34 | **0** | 0 | 148 (1.85%) | 0 | 141 s |
-| 2026-11-16 19:29 | 200 msgs × 4 endpoints, 2 workers, kill every 2 s | 800 | 18 | **0** | 0 | 75 | 0 | 38 s |
-| 2026-11-16 19:27 | 2000 msgs × 4 endpoints, no kills (baseline) | 8,000 | 0 | **0** | 0 | 0 | 0 | 95 s |
+| Date (UTC)       | Scenario                                          | Deliveries | Real SIGKILLs | Lost  | Unfinished | Duplicates  | Bad signatures | Wall time |
+| ---------------- | ------------------------------------------------- | ---------- | ------------- | ----- | ---------- | ----------- | -------------- | --------- |
+| 2026-11-16 19:31 | 2000 msgs × 4 endpoints, kill a worker every 4 s  | 8,000      | 34            | **0** | 0          | 148 (1.85%) | 0              | 141 s     |
+| 2026-11-16 19:29 | 200 msgs × 4 endpoints, 2 workers, kill every 2 s | 800        | 18            | **0** | 0          | 75          | 0              | 38 s      |
+| 2026-11-16 19:27 | 2000 msgs × 4 endpoints, no kills (baseline)      | 8,000      | 0             | **0** | 0          | 0           | 0              | 95 s      |
 
 Time from ingest to first attempt (ms), same runs:
 
 | Endpoint | Baseline p50 / p95 | With kills p50 / p95 |
-| --- | --- | --- |
-| healthy | 7,585 / 8,235 | 6,341 / 7,289 |
-| flaky | 9,852 / 12,207 | 13,125 / 17,901 |
-| hostile | 12,669 / 18,909 | 15,867 / 26,829 |
-| slow | 38,897 / 74,242 | 65,189 / 120,953 |
+| -------- | ------------------ | -------------------- |
+| healthy  | 7,585 / 8,235      | 6,341 / 7,289        |
+| flaky    | 9,852 / 12,207     | 13,125 / 17,901      |
+| hostile  | 12,669 / 18,909    | 15,867 / 26,829      |
+| slow     | 38,897 / 74,242    | 65,189 / 120,953     |
 
 ### How to read these
 
