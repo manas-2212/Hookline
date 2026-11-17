@@ -1,0 +1,188 @@
+{
+  "title": "Hookline",
+  "uid": "hookline",
+  "schemaVersion": 39,
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Attempts per second by outcome",
+      "datasource": {
+        "uid": "prom"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (outcome) (rate(hookline_attempts_total[1m]))",
+          "legendFormat": "{{outcome}}"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Failures by error kind",
+      "datasource": {
+        "uid": "prom"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (error_kind) (rate(hookline_attempts_total{outcome=\"failure\"}[1m]))",
+          "legendFormat": "{{error_kind}}"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Ingest \u2192 first attempt (p50 / p95)",
+      "datasource": {
+        "uid": "prom"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.5, sum by (le) (rate(hookline_delivery_latency_seconds_bucket[5m])))",
+          "legendFormat": "latency"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(hookline_delivery_latency_seconds_bucket[5m])))",
+          "legendFormat": "latency"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Queue depth",
+      "datasource": {
+        "uid": "prom"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (status) (max by (status) (hookline_queue_depth))",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Attempt duration p95 by outcome",
+      "datasource": {
+        "uid": "prom"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le, outcome) (rate(hookline_attempt_duration_seconds_bucket[5m])))",
+          "legendFormat": "{{outcome}}"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Reaped leases and lost leases",
+      "datasource": {
+        "uid": "prom"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(rate(hookline_reaped_total[5m]))",
+          "legendFormat": "{{__name__}}"
+        },
+        {
+          "expr": "sum(rate(hookline_lost_leases_total[5m]))",
+          "legendFormat": "{{__name__}}"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "API p95 latency by route",
+      "datasource": {
+        "uid": "prom"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 24,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le, route) (rate(hookline_http_request_duration_seconds_bucket[5m])))",
+          "legendFormat": "{{route}}"
+        }
+      ]
+    }
+  ]
+}

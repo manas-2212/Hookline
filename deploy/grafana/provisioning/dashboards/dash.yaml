@@ -1,0 +1,3 @@
+apiVersion: 1
+providers:
+  - { name: hookline, folder: Hookline, type: file, options: { path: /var/lib/grafana/dashboards } }

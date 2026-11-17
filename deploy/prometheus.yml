@@ -1,0 +1,7 @@
+global: { scrape_interval: 5s }
+scrape_configs:
+  - job_name: hookline-api
+    static_configs: [{ targets: ["api:8080", "host.docker.internal:8080"] }]
+  - job_name: hookline-worker
+    dns_sd_configs: [{ names: ["worker"], type: A, port: 9464 }]
+    static_configs: [{ targets: ["host.docker.internal:9464"] }]
